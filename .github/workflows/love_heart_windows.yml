@@ -3,20 +3,20 @@
 
 name: 画爱心Windows版
 
-on:
-  workflow_dispatch:
+on:  #触发条件
+  workflow_dispatch: #定义的触发的动作，这里是手动触发
 
-permissions:
+permissions: #获取的权限
   contents: read
 
-jobs:
-  pyinstaller-build:
-    runs-on: windows-latest
-    steps:
+jobs: #一个workfolw可以定义多个jobs，这里只定义了一个
+  pyinstaller-build: 
+    runs-on: windows-latest #申请了一个虚拟机来执行这个任务，这里申请的是最新版的windows的虚拟机
+    steps: #jobs下的步骤
       - name: Create Executable
-        uses: sayyid5416/pyinstaller@v1
-        with:
+        uses: sayyid5416/pyinstaller@v1 #这里使用了别人打包好的脚本
+        with: #with用来指定给脚本传递的参数
           python_ver: '3.12'
           spec: 'love_heart.py'
           upload_exe_with_name: 'love_heart'
-          options: --onefile, --name "love_heart", --windowed, 
+          options: --onefile, --name "love_heart", --windowed, # 打包为一个命名为love_heart的文件,并且需要窗口化运行
